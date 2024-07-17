@@ -4,12 +4,18 @@
     <div class="dictionary__header">
       <img src="../assets/logo.svg" alt="logo" />
       <div class="dictionary__fontandToggle">
-        <select id="font">
-          <option value="">Sans Serif</option>
-          <option value="">Fonts</option>
-          <option value="">Fonts</option>
-        </select>
-        <img id="selectFont" src="../assets/icon-arrow-down.svg" alt="arrow" />
+        <span class="fontcontainer">
+          <select id="font" [class.fontselectdarkmode]="isDarkMode">
+            <option value="">Sans Serif</option>
+            <option value="">Fonts</option>
+            <option value="">Fonts</option>
+          </select>
+          <img
+            id="selectFont"
+            src="../assets/icon-arrow-down.svg"
+            alt="arrow"
+          />
+        </span>
         <span class="divider"></span>
         <div (click)="darkMode()" class="toggle"><span></span></div>
         <svg
@@ -42,16 +48,21 @@
         [class.darksearch]="isDarkMode"
         type="text"
         placeholder="Search for any word..."
+        #input
       />
-      <img src="../assets/icon-search.svg" alt="search" />
+      <img
+        src="../assets/icon-search.svg"
+        alt="search"
+        (click)="dictionary(input.value)"
+      />
     </div>
     <!-- dictionary Result -->
     <div class="dictionary__searchResult">
       <div class="resultheader">
         <div class="title">
           <!-- dictionary first section -->
-          <h1>Keyboard</h1>
-          <h3 [class.purpletext]="isDarkMode">/'K0'|l;d/</h3>
+          <h1>{{ word }}</h1>
+          <h3 [class.purpletext]="isDarkMode">{{ phonetic }}</h3>
         </div>
         <!-- play svg -->
         <svg
@@ -68,29 +79,29 @@
       </div>
       <!-- dictionary second section with divider line -->
       <div class="secondsection">
-        <p id="speechtype" class="spaceBig">Noun</p>
+        <p id="speechtype" class="spaceBig">{{ partofSpeech }}</p>
         <span class="dictionaryline" [class.darklines]="isDarkMode"></span>
       </div>
       <p class="subheading">Meaning</p>
       <ul>
-        <li>A set of keys used to operate a typewriter</li>
-        <li>A set of keys used to operate a typewriter</li>
-        <li>A set of keys used to operate a typewriter</li>
+        <li>{{ definition1 }}</li>
+        <li>{{ definition2 }}</li>
+        <li>{{ definition3 }}</li>
       </ul>
       <p class="subheading spaceSmall">
         synonyms
-        <span class="synonym" [class.purpletext]="isDarkMode"
-          >electronic Keyboard</span
-        >
+        <span class="synonym" [class.purpletext]="isDarkMode">{{
+          synonyms
+        }}</span>
       </p>
       <div class="secondsection">
-        <p id="speechtype">Noun</p>
+        <p id="speechtype">{{ partofSpeech2 }}</p>
         <span class="dictionaryline" [class.darklines]="isDarkMode"></span>
       </div>
       <p class="subheading spaceSmall">Meaning</p>
       <ul id="smallUl">
-        <li>this is an example</li>
-        <p>some message here as well</p>
+        <li>{{ definition4 }}</li>
+        <p>{{ definition5 }}</p>
       </ul>
       <span
         class="dictionaryline spaceBig"

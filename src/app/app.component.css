@@ -37,6 +37,20 @@ svg {
   height: 1rem;
 }
 
+/* font container */
+.fontcontainer {
+  position: relative;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  z-index: 99;
+}
+
+.fontcontainer > img {
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
 /* font select */
 select {
   display: block;
@@ -45,6 +59,9 @@ select {
   background-color: transparent;
   border: none;
   color: black;
+  font-weight: bold;
+  font-size: 0.8rem;
+  width: 100%;
 }
 
 /* divider */
@@ -216,6 +233,10 @@ ul li::before {
 }
 
 /* darkmode theme */
+
+.fontselectdarkmode {
+  color: white;
+}
 
 .darkmode {
   background-color: black;
