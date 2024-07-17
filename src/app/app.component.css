@@ -1,0 +1,245 @@
+#container {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.4s;
+}
+
+/* dictionary container */
+.dictionary__container {
+  /* border: 2px solid blue; */
+  width: 35rem;
+  height: 40rem;
+}
+
+/*logo fonts and toggle styling*/
+.dictionary__header {
+  display: flex;
+  justify-content: space-between;
+}
+.dictionary__header > img {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+/* toggle and font container */
+.dictionary__fontandToggle {
+  /* border: 2px solid green; */
+  width: 40%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+
+svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* font select */
+select {
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+/* divider */
+.divider {
+  border: 1px solid #757575;
+  display: block;
+  height: 70%;
+}
+/* Darkmode toggler */
+.toggle {
+  width: 2.3rem;
+  height: 1.4rem;
+  border-radius: 100vw;
+  background-color: #757575;
+  padding-inline: 0.1rem;
+  display: flex;
+  align-items: center;
+}
+.toggle > span {
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 100vw;
+  display: block;
+}
+/* darkmode toggles */
+.toggle[darkmode] {
+  background-color: #a445ed;
+}
+.toggle[darkmode] > span {
+  margin-inline-start: auto;
+}
+
+/* search styling */
+.dictionary__search {
+  height: 2.8rem;
+  border-radius: 15px;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1.4rem;
+}
+.dictionary__search > input {
+  width: 90%;
+  height: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.dictionary__search > input::placeholder {
+  color: #c2c2c2;
+  font-weight: bold;
+}
+.dictionary__search > input:focus {
+  border-color: none;
+  outline: none;
+}
+.dictionary__search > img {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Dictionary result first section*/
+.resultheader {
+  /* border: 2px solid red; */
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title > h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.resultheader > svg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+#speechtype {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+/* dictionary result second section */
+.secondsection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* border: 2px solid blue; */
+}
+.dictionaryline {
+  border: 1px solid #f4f4f4;
+  width: 100%;
+  display: block;
+}
+
+/* final section */
+.subheading {
+  font-size: 1.2rem;
+  color: #757575;
+}
+
+.synonym {
+  font-weight: bold;
+  margin-inline-start: 0.5rem;
+}
+#smallUl {
+  min-height: 3rem;
+}
+#smallUl > p {
+  padding-inline-start: 1.3rem;
+}
+
+hr {
+  color: #757575;
+}
+.source {
+  color: #757575;
+}
+footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* listed items decorations */
+
+ul {
+  /* border: 2px solid red; */
+  min-height: 8rem;
+}
+
+ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Style the dot circle */
+ul li {
+  position: relative;
+  padding-left: 1.4em; /* Adjust as needed */
+}
+
+ul li::before {
+  content: "\2022"; /* Unicode character for bullet (•) */
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  color: #a445ed; /* Change color as needed */
+  font-size: 1.4em; /* Adjust size as needed */
+  line-height: inherit; /* Match line-height of the text */
+  top: 50%; /* Position the bullet in the middle of the line */
+  transform: translateY(-50%);
+}
+
+/* darkmode theme */
+
+.darkmode {
+  background-color: black;
+  color: white;
+}
+
+.darkmoon {
+  stroke: #a445ed;
+}
+
+.purpletext {
+  color: #a445ed;
+}
+
+.darksearch {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+.darklines {
+  border: 1px solid #1f1f1f;
+}
+
+/* search bar styling */
+.focused {
+  outline: 2px solid #a445ed;
+}

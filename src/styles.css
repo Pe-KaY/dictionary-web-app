@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+::before,
+::after {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  color: black;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  user-select: none;
+}
+
+.spaceBig {
+  margin-block: 1.3rem;
+}
+
+.spaceSmall {
+  margin-block: 0.8rem;
+}
+
+.moon {
+  fill: none;
+  stroke: #838383
+}
+
