@@ -1,22 +1,27 @@
 <div id="container" [class.darkmode]="isDarkMode">
-  <div class="dictionary__container">
+  <div class="dictionary__container" [style.fontFamily]="fontstyle">
     <!-- header or toggle bar -->
     <div class="dictionary__header">
       <img src="../assets/logo.svg" alt="logo" />
       <div class="dictionary__fontandToggle">
         <span class="fontcontainer">
-          <div class="font" [class.fontselectdarkmode]="isDarkMode">
-            <p>Sans-serif</p>
-            <div class="behindthescene" [class.fontselectdarkmode]="isDarkMode">
-              <p>Sans serif</p>
-              <p>Serif</p>
-              <p>Mono</p>
+          <div class="font" [class.fontsdarkmode]="isDarkMode">
+            <p>{{ selectedFont }}</p>
+            <div
+              class="behindthescene"
+              [style.visibility]="fontMenu ? 'hidden' : 'visible'"
+              [class.fontselectdarkmode]="isDarkMode"
+            >
+              <p (click)="chooseFont('sans-serif')">Sans serif</p>
+              <p (click)="chooseFont('serif')">Serif</p>
+              <p (click)="chooseFont('monospace')">Mono</p>
             </div>
           </div>
           <img
             id="selectFont"
             src="../assets/icon-arrow-down.svg"
             alt="arrow"
+            (click)="toggleFontMenu()"
           />
         </span>
         <span class="divider"></span>
@@ -62,66 +67,95 @@
         (click)="dictionary(input.value)"
       />
     </div>
-    <!-- dictionary Result -->
-    <div class="dictionary__searchResult">
-      <div class="resultheader">
-        <div class="title">
-          <!-- dictionary first section -->
-          <h1>{{ word }}</h1>
-          <h3 [class.purpletext]="isDarkMode">{{ phonetic }}</h3>
+
+    <!--  -->
+    <div class="resultWrapper">
+      <!-- Result wrapper container above -->
+      <ng-container *ngIf="noError">
+        <!-- if starts here -->
+        <!-- dictionary Result -->
+        <div class="dictionary__searchResult">
+          <div class="resultheader">
+            <div class="title">
+              <!-- dictionary first section -->
+              <h1>{{ word }}</h1>
+              <h3 [class.purpletext]="isDarkMode">{{ phonetic }}</h3>
+            </div>
+            <!-- play svg -->
+            <svg
+              (click)="playAudio()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="75"
+              height="75"
+              viewBox="0 0 75 75"
+            >
+              <g fill="#A445ED" fill-rule="evenodd">
+                <circle cx="37.5" cy="37.5" r="37.5" />
+                <path d="M29 27v21l21-10.5z" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- SECTIONS-->
+          <ng-container>
+            @for(meaning of meaning; track $index){
+
+            <div class="secondsection">
+              <p id="speechtype" class="spaceBig">{{ meaning.partOfSpeech }}</p>
+              <span
+                class="dictionaryline"
+                [class.darklines]="isDarkMode"
+              ></span>
+            </div>
+            <p class="subheading">Meaning</p>
+            <ul>
+              @for(defi of meaning.definitions ; track $index){
+              <li>
+                {{ defi.definition }}
+              </li>
+              @if(defi.example){
+              <p class="example subheading">example: {{ defi.example }}</p>
+              } }
+            </ul>
+            <p class="subheading spaceSmall">
+              synonyms
+              <span class="synonym" [class.purpletext]="isDarkMode">
+                @for(synoms of meaning.synonyms ;track $index){
+                <span
+                  #synom
+                  (click)="dictionary(synom.innerText)"
+                  class="synonyms"
+                  >{{ synoms }}</span
+                >, }
+              </span>
+            </p>
+            }
+          </ng-container>
+          <!-- FOOTER LINE STARTES HERE-->
+          <span
+            class="dictionaryline spaceBig"
+            [class.darklines]="isDarkMode"
+          ></span>
+          <!-- FOOTER -->
+          <footer>
+            <p class="source">Source</p>
+            <p>https:/en.wiktionary.org/wiki/keyboard</p>
+            <a href="en.wiktionary.org/wiki/keyboard">
+              <img src="../assets/icon-new-window.svg" alt="" />
+            </a>
+          </footer>
         </div>
-        <!-- play svg -->
-        <svg
-          (click)="playAudio()"
-          xmlns="http://www.w3.org/2000/svg"
-          width="75"
-          height="75"
-          viewBox="0 0 75 75"
-        >
-          <g fill="#A445ED" fill-rule="evenodd">
-            <circle cx="37.5" cy="37.5" r="37.5" />
-            <path d="M29 27v21l21-10.5z" />
-          </g>
-        </svg>
-      </div>
-      <!-- dictionary second section with divider line -->
-      <div class="secondsection">
-        <p id="speechtype" class="spaceBig">{{ partofSpeech }}</p>
-        <span class="dictionaryline" [class.darklines]="isDarkMode"></span>
-      </div>
-      <p class="subheading">Meaning</p>
-      <ul>
-        <li>{{ definition1 }}</li>
-        <li>{{ definition2 }}</li>
-        <li>{{ definition3 }}</li>
-      </ul>
-      <p class="subheading spaceSmall">
-        synonyms
-        <span class="synonym" [class.purpletext]="isDarkMode">{{
-          synonyms
-        }}</span>
-      </p>
-      <div class="secondsection">
-        <p id="speechtype">{{ partofSpeech2 }}</p>
-        <span class="dictionaryline" [class.darklines]="isDarkMode"></span>
-      </div>
-      <p class="subheading spaceSmall">Meaning</p>
-      <ul id="smallUl">
-        <li>{{ definition4 }}</li>
-        <p>{{ definition5 }}</p>
-      </ul>
-      <span
-        class="dictionaryline spaceBig"
-        [class.darklines]="isDarkMode"
-      ></span>
-      <footer>
-        <p class="source">Source</p>
-        <p>https:/en.wiktionary.org/wiki/keyboard</p>
-        <a href="en.wiktionary.org/wiki/keyboard">
-          <img src="../assets/icon-new-window.svg" alt="" />
-        </a>
-      </footer>
+      </ng-container>
+      <ng-container *ngIf="yesError">
+        <div class="errorContainer">
+          <p class="errorEmoji spaceBig">😕</p>
+          <p class="errorTitle spaceBig">{{ title }}</p>
+          <p class="errorMessage spaceBig">{{ message }}</p>
+        </div>
+      </ng-container>
     </div>
+    <!-- result wrapper ends here -->
+    <!-- if ends -->
   </div>
 </div>
 <router-outlet />

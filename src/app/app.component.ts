@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { forApi } from '../my-interface';
+import { final, forApi } from '../my-interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule],
+  imports: [RouterOutlet, HttpClientModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -27,59 +27,54 @@ export class AppComponent implements OnInit {
     this.http.get<forApi>(`${this.apiUrl}${word}`).subscribe({
       next: (data: forApi) => {
         if (data && data.length > 0) {
-          let audiofile:string = ''
-          for(let i = 0;i < data[0].phonetics.length;i++){
-            if(data[0].phonetics[i]?.audio){
-              audiofile = data[0].phonetics[i]?.audio
-              break
+          let audiofile: string = '';
+          for (let i = 0; i < data[0].phonetics.length; i++) {
+            if (data[0].phonetics[i]?.audio) {
+              audiofile = data[0].phonetics[i]?.audio;
+              break;
             }
           }
+          // stores dictionary data into a local array
+          this.meaning = data[0].meanings;
+
+          //for the header
           const neededData = {
             word: data[0].word,
             phonetic: data[0].phonetic,
             audio: audiofile || '',
-            speech: data[0].meanings[0]?.partOfSpeech || '',
-            definition1: data[0].meanings[0]?.definitions[0]?.definition || '',
-            definition2: data[0].meanings[0]?.definitions[1]?.definition || '',
-            definition3: data[0].meanings[0]?.definitions[2]?.definition || '',
-            synonyms: data[0].meanings[0]?.synonyms[0] || '',
-            speech2: data[0].meanings[1]?.partOfSpeech || '',
-            definition4: data[0].meanings[1]?.definitions[0]?.definition || '',
-            definition5: data[0].meanings[1]?.definitions[1]?.definition || '',
           };
-
+          // assigns it to local variables to be used in the html template
           this.word = neededData.word;
           this.phonetic = neededData.phonetic;
           this.audio = neededData.audio;
-          this.synonyms = neededData.synonyms;
-          this.partofSpeech = neededData.speech;
-          this.definition1 = neededData.definition1;
-          this.definition2 = neededData.definition2;
-          this.definition3 = neededData.definition3;
-          this.partofSpeech2 = neededData.speech2;
-          this.definition4 = neededData.definition4;
-          this.definition5 = neededData.definition5;
+          // disables error screen if enabled
+          this.noError = true;
+          this.yesError = false;
         }
       },
-      error: (error) => {
-        console.log(`There was an error: ${error}`);
+      error: (_error) => {
+        // displays error screen
+        this.noError = false;
+        this.yesError = true;
+        // setting error message
+        this.title = 'No Definitions Found';
+        this.message =
+          "Sorry pal, we couldn't find definitions for the word you were looking for.";
       },
     });
   }
 
   // Dictionary words
+  meaning: final = [];
   apiUrl: string = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
   word: string = '';
   phonetic: string = '';
-  partofSpeech: string = '';
   audio: string = '';
-  synonyms: string = '';
-  definition1: string = '';
-  definition2: string = '';
-  definition3: string = '';
-  partofSpeech2: string = '';
-  definition4: string = '';
-  definition5: string = '';
+  // WORD error handling Screen
+  title: string = '';
+  message: string = '';
+  noError: boolean = true;
+  yesError: boolean = false;
 
   // dictionary search function
   dictionary(word: string) {
@@ -89,13 +84,36 @@ export class AppComponent implements OnInit {
     }
     this.isError = false;
     this.getWord(word);
+    this.clearSearch();
   }
   // play audio function
   playAudio() {
     const audio = new Audio(this.audio);
     audio.play();
   }
-  // darkmode boolean
+  //  clear search word
+  @ViewChild('input') input!: ElementRef;
+  clearSearch() {
+    this.input.nativeElement.value = '';
+  }
+  // choose font style
+  fontMenu: boolean = true;
+  fontstyle: string = 'sans-serif';
+  selectedFont: string = 'Sans serif';
+  // toggle font menu
+  toggleFontMenu() {
+    this.fontMenu = !this.fontMenu;
+  }
+  // choose font style
+  chooseFont(font: string) {
+    this.fontstyle = font;
+    this.fontMenu = true;
+    if (font === 'sans-serif') this.selectedFont = 'Sans serif';
+    if (font === 'serif') this.selectedFont = 'Serif';
+    if (font === 'monospace') this.selectedFont = 'Mono';
+  }
+
+  // darkmode
   isDarkMode: boolean = false;
   // searchbar focused
   isFocused: boolean = false;

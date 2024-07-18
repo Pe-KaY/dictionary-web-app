@@ -7,8 +7,9 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   color: black;
+  overflow-y: auto;
 }
 
 img {
@@ -27,6 +28,30 @@ img {
 
 .moon {
   fill: none;
-  stroke: #838383
+  stroke: #838383;
 }
 
+/* /* Error Handling */
+.errorContainer {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.errorEmoji {
+  font-size: 4rem;
+}
+.errorTitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.errorMessage {
+  margin-block-start: -0.5rem;
+  font-size: 1.1rem;
+}
+
+.resultWrapper {
+  min-height: 100vh;
+}
