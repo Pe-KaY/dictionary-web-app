@@ -86,6 +86,12 @@ export class AppComponent implements OnInit {
     this.getWord(word);
     this.clearSearch();
   }
+  // Enter key to search function
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.dictionary(this.input.nativeElement.value);
+    }
+  }
   // play audio function
   playAudio() {
     const audio = new Audio(this.audio);
