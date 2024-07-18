@@ -54,6 +54,7 @@
     >
       <label>Whoops, can't be empty</label>
       <input
+      (keydown)="onKeydown($event)"
         (focus)="onfocus()"
         (blur)="onblur()"
         [class.darksearch]="isDarkMode"
