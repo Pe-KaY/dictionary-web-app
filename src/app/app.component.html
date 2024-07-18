@@ -5,11 +5,14 @@
       <img src="../assets/logo.svg" alt="logo" />
       <div class="dictionary__fontandToggle">
         <span class="fontcontainer">
-          <select id="font" [class.fontselectdarkmode]="isDarkMode">
-            <option value="">Sans Serif</option>
-            <option value="">Fonts</option>
-            <option value="">Fonts</option>
-          </select>
+          <div class="font" [class.fontselectdarkmode]="isDarkMode">
+            <p>Sans-serif</p>
+            <div class="behindthescene" [class.fontselectdarkmode]="isDarkMode">
+              <p>Sans serif</p>
+              <p>Serif</p>
+              <p>Mono</p>
+            </div>
+          </div>
           <img
             id="selectFont"
             src="../assets/icon-arrow-down.svg"
@@ -36,12 +39,15 @@
       </div>
     </div>
     <!-- search -->
+
     <div
       class="dictionary__search spaceBig"
       [class.darksearch]="isDarkMode"
       [class.focused]="isFocused"
+      [class.error]="isError"
       #searchbar
     >
+      <label>Whoops, can't be empty</label>
       <input
         (focus)="onfocus()"
         (blur)="onblur()"
@@ -66,13 +72,14 @@
         </div>
         <!-- play svg -->
         <svg
+          (click)="playAudio()"
           xmlns="http://www.w3.org/2000/svg"
           width="75"
           height="75"
           viewBox="0 0 75 75"
         >
           <g fill="#A445ED" fill-rule="evenodd">
-            <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+            <circle cx="37.5" cy="37.5" r="37.5" />
             <path d="M29 27v21l21-10.5z" />
           </g>
         </svg>
