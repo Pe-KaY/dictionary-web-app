@@ -307,12 +307,11 @@
           </p>
         </div>
       </ng-container>
+      <div *ngIf="loading" class="loading">
+        <img src="../assets/spinner.apng" alt="loading" />
+      </div>
     </div>
-    } @placeholder (minimum 2s){
-    <div class="loading">
-      <img src="../assets/spinner.apng" alt="loading" />
-    </div>
-    }
+    } 
     <!-- result wrapper ends here -->
     <!-- if ends -->
   </div>

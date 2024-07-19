@@ -42,17 +42,38 @@ export class AppComponent implements OnInit {
             phonetic: data[0].phonetic,
             audio: audiofile || '',
           };
-          // assigns it to local variables to be used in the html template
-          this.word = neededData.word;
-          this.SourceUrl = `https://en.wiktionary.org/wiki/${neededData.word}`;
-          this.phonetic = neededData.phonetic;
-          this.audio = neededData.audio;
-          // disables error screen if enabled
-          this.noError = true;
-          this.yesError = false;
-          // show some elements(by defaults all is hidden on load)
-          if (!this.show) {
-            this.show = true;
+
+          if (this.yesError) {
+            this.yesError = false
+            this.loading = true;
+            setTimeout(() => {
+              // disables loading
+              this.loading = false;
+
+              // assigns it to local variables to be used in the html template
+              this.word = neededData.word;
+              this.SourceUrl = `https://en.wiktionary.org/wiki/${neededData.word}`;
+              this.phonetic = neededData.phonetic;
+              this.audio = neededData.audio;
+              // disables error screen if enabled
+              this.noError = true;
+              // show some elements(by defaults all is hidden on load)
+              if (!this.show) {
+                this.show = true;
+              }
+            }, 2000);
+          } else {
+            // this.yesError = false;
+            // this.loading = true;
+            // assigns it to local variables to be used in the html template
+            this.word = neededData.word;
+            this.SourceUrl = `https://en.wiktionary.org/wiki/${neededData.word}`;
+            this.phonetic = neededData.phonetic;
+            this.audio = neededData.audio;
+            // show some elements(by defaults all is hidden on load)
+            if (!this.show) {
+              this.show = true;
+            }
           }
         }
       },
@@ -78,6 +99,7 @@ export class AppComponent implements OnInit {
   noError: boolean = true;
   yesError: boolean = false;
   show: boolean = false;
+  loading: boolean = false;
 
   // dictionary search function
   dictionary(word: string) {
