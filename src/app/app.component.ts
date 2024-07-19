@@ -59,8 +59,6 @@ export class AppComponent implements OnInit {
         this.yesError = true;
         // setting error message
         this.title = 'No Definitions Found';
-        this.message =
-          "Sorry pal, we couldn't find definitions for the word you were looking for.";
       },
     });
   }
@@ -74,7 +72,6 @@ export class AppComponent implements OnInit {
   SourceUrl: string = '';
   // WORD error handling Screen
   title: string = '';
-  message: string = '';
   noError: boolean = true;
   yesError: boolean = false;
 
