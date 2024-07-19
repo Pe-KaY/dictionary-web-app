@@ -1,3 +1,94 @@
+<style>
+  @media (max-width: 580px) {
+    .dictionary__container {
+      width: 20rem;
+    }
+    /* font container */
+    .dictionary__fontandToggle {
+      width: 60%;
+    }
+    .fontcontainer {
+      width: 5rem;
+    }
+    footer {
+      font-size: 0.8rem;
+    }
+    footer > a > img {
+      width: 1rem;
+    }
+  }
+
+  @media (min-width: 824px) {
+    .dictionary__container {
+      width: 50rem;
+    }
+
+    .dictionary__header > img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .dictionary__fontandToggle {
+      width: 60%;
+    }
+    .fontcontainer {
+      width: 8rem;
+    }
+    .font > p {
+      font-size: 1.2rem;
+    }
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+
+    /* search bar */
+    .dictionary__search {
+      min-height: 4rem;
+    }
+    .dictionary__search > input {
+      font-size: 1.4rem;
+    }
+    .dictionary__search > img {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    /* Dictionary result */
+    .resultheader {
+      min-height: 5rem;
+    }
+    .title {
+      font-size: 1.3rem;
+    }
+    .title > h1 {
+      font-size: 4rem;
+    }
+    #speechtype {
+      font-size: 1.5rem;
+    }
+    .subheading {
+      font-size: 1.4rem;
+    }
+    .synonym {
+      font-size: 1.2rem;
+    }
+
+    ul li::before {
+      font-size: 1.4rem;
+    }
+    ul > p {
+      font-size: 1rem;
+    }
+    .definitiontext {
+      font-size: 1.2rem;
+    }
+    footer > a {
+      font-size: 1.5rem;
+    }
+    footer > a > img {
+      width: 1.4rem;
+    }
+  }
+</style>
 <div id="container" [class.darkmode]="isDarkMode">
   <div class="dictionary__container" [style.fontFamily]="fontstyle">
     <!-- header or toggle bar -->
