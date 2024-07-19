@@ -276,11 +276,10 @@ ul {
 /* Style the dot circle */
 ul li {
   position: relative;
-  padding-left: 1.4em; /* Adjust as needed */
+  padding-left: 1.4em; 
 }
 ul > p {
   font-size: 1rem;
-  padding-inline-start: 2.3em;
 }
 
 /* darkmode theme */

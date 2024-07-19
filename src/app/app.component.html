@@ -16,6 +16,40 @@
     footer > a > img {
       width: 1rem;
     }
+    ul {
+      padding: 0;
+    }
+    ul li {
+      padding: 0;
+    }
+    .definitiontext {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .bullet {
+      width: 5%;
+      display: flex;
+      justify-content: center;
+      padding-block-start: 0.3em;
+    }
+
+    .example {
+      padding-inline-start: 1.7rem;
+    }
+  }
+  @media (min-width: 581px) {
+    .definitiontext {
+      gap: 0.5rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    .bullet {
+      position: absolute;
+      left: 0;
+    }
+    .example {
+      padding-inline-start: 2.8rem;
+    }
   }
 
   @media (min-width: 824px) {
@@ -61,6 +95,19 @@
     }
     .title > h1 {
       font-size: 4rem;
+    }
+
+    .definitiontext {
+      gap: 0.5rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    .bullet {
+      position: absolute;
+      left: 0;
+    }
+    .example {
+      padding-inline-start: 2.8rem;
     }
     #speechtype {
       font-size: 1.5rem;
@@ -207,9 +254,10 @@
             <ul>
               @for(defi of meaning.definitions ; track $index){
               <li>
-                <p class="definitiontext">
-                  <span class="bullet"><span></span></span>{{ defi.definition }}
-                </p>
+                <div class="definitiontext">
+                  <span class="bullet"><span></span></span>
+                  <p>{{ defi.definition }}</p>
+                </div>
               </li>
               @if(defi.example){
               <p class="example subheading">example: {{ defi.example }}</p>

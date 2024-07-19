@@ -68,7 +68,7 @@ img {
   height: 10rem;
 }
 
-.bullet{
+.bullet > span{
   background-color: #a445ed;
   display : inline-block;
   width: 0.4rem;
