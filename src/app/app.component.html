@@ -204,6 +204,7 @@
         src="../assets/icon-search.svg"
         alt="search"
         (click)="dictionary(input.value)"
+        #searchBtn
       />
     </div>
 
@@ -226,6 +227,7 @@
             </div>
             <!-- play svg -->
             <svg
+            *ngIf="show"
               (click)="playAudio()"
               xmlns="http://www.w3.org/2000/svg"
               width="75"
@@ -246,6 +248,7 @@
             <div class="secondsection">
               <p id="speechtype" class="spaceBig">{{ meaning.partOfSpeech }}</p>
               <span
+              *ngIf="show"
                 class="dictionaryline"
                 [class.darklines]="isDarkMode"
               ></span>
@@ -279,11 +282,12 @@
           </ng-container>
           <!-- FOOTER LINE STARTES HERE-->
           <span
+          *ngIf="show"
             class="dictionaryline spaceBig"
             [class.darklines]="isDarkMode"
           ></span>
           <!-- FOOTER -->
-          <footer>
+          <footer *ngIf="show">
             <p class="source">Source</p>
             <p>{{ SourceUrl }}</p>
             <a [href]="SourceUrl" target="_blank">

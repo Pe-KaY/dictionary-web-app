@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
       toggle?.toggleAttribute('darkmode');
       this.isDarkMode = true;
     }
-    this.getWord('keyboard');
   }
 
   getWord(word: string): void {
@@ -51,6 +50,10 @@ export class AppComponent implements OnInit {
           // disables error screen if enabled
           this.noError = true;
           this.yesError = false;
+          // show some elements(by defaults all is hidden on load)
+          if (!this.show) {
+            this.show = true;
+          }
         }
       },
       error: (_error) => {
@@ -74,6 +77,7 @@ export class AppComponent implements OnInit {
   title: string = '';
   noError: boolean = true;
   yesError: boolean = false;
+  show: boolean = false;
 
   // dictionary search function
   dictionary(word: string) {
