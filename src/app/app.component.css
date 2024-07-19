@@ -1,8 +1,9 @@
 #container {
-  min-height: 100vh;
+  min-height: 100%;
   display: grid;
   place-items: center;
   transition: background-color 0.4s;
+  padding-block: 1%;
 }
 
 /* dictionary container */
@@ -25,7 +26,6 @@
 
 /* toggle and font container */
 .dictionary__fontandToggle {
-  /* border: 2px solid green; */
   width: 40%;
   display: flex;
   justify-content: end;
@@ -96,6 +96,7 @@ svg {
   border: 1px solid #757575;
   display: block;
   height: 70%;
+  transition: background-color 0.4s;
 }
 /* Darkmode toggler */
 .toggle {
@@ -106,6 +107,11 @@ svg {
   padding-inline: 0.1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+.toggle:hover {
+  background-color: #a445ed;
 }
 .toggle > span {
   width: 1rem;
@@ -113,6 +119,7 @@ svg {
   background-color: white;
   border-radius: 100vw;
   display: block;
+  transition: margin-inline-start 0.4s;
 }
 /* darkmode toggles */
 .toggle[darkmode] {
@@ -159,7 +166,6 @@ svg {
 
 /* Dictionary result first section*/
 .resultheader {
-  /* border: 2px solid red; */
   height: 4rem;
   display: flex;
   justify-content: space-between;
@@ -205,7 +211,6 @@ svg {
   display: flex;
   align-items: center;
   gap: 1rem;
-  /* border: 2px solid blue; */
 }
 .dictionaryline {
   border: 1px solid #f4f4f4;
@@ -247,6 +252,10 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1.2rem;
+}
+footer > a > img {
+  width: 1.2rem;
 }
 
 /* listed items decorations */
@@ -269,20 +278,9 @@ ul li {
   position: relative;
   padding-left: 1.4em; /* Adjust as needed */
 }
-ul > p{
-  padding-inline-start: 1.4rem;
-}
-
-ul li::before {
-  content: "\2022"; /* Unicode character for bullet (•) */
-  position: absolute;
-  left: 0.5rem;
-  top: 0;
-  color: #a445ed; /* Change color as needed */
-  font-size: 1.4em; /* Adjust size as needed */
-  line-height: inherit; /* Match line-height of the text */
-  top: 50%; /* Position the bullet in the middle of the line */
-  transform: translateY(-50%);
+ul > p {
+  font-size: 1rem;
+  padding-inline-start: 2.3em;
 }
 
 /* darkmode theme */
@@ -339,4 +337,94 @@ label {
   visibility: visible;
 }
 
-/* font Select styling */
+/* media queries */
+
+@media (max-width: 580px) {
+  .dictionary__container {
+    width: 20rem;
+  }
+  /* font container */
+  .dictionary__fontandToggle {
+    width: 60%;
+  }
+  .fontcontainer {
+    width: 5rem;
+  }
+  footer {
+    font-size: 0.8rem;
+  }
+  footer > a > img {
+    width: 1rem;
+  }
+}
+
+@media (min-width: 824px) {
+  .dictionary__container {
+    width: 50rem;
+  }
+
+  .dictionary__header > img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .dictionary__fontandToggle {
+    width: 60%;
+  }
+  .fontcontainer {
+    width: 8rem;
+  }
+  .font > p {
+    font-size: 1.2rem;
+  }
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  /* search bar */
+  .dictionary__search {
+    min-height: 4rem;
+  }
+  .dictionary__search > input {
+    font-size: 1.4rem;
+  }
+  .dictionary__search > img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  /* Dictionary result */
+  .resultheader {
+    min-height: 5rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  .title > h1 {
+    font-size: 4rem;
+  }
+  #speechtype {
+    font-size: 1.5rem;
+  }
+  .subheading {
+    font-size: 1.4rem;
+  }
+  .synonym {
+    font-size: 1.2rem;
+  }
+
+  ul li::before {
+    font-size: 1.4rem;
+  }
+  ul > p {
+    font-size: 1rem;
+  }
+  .definitiontext {
+    font-size: 1.2rem;
+  }
+  footer > a {
+    font-size: 1.5rem;
+  }
+  footer > a > img {
+    width: 1.4rem;
+  }
+}

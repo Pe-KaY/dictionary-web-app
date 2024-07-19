@@ -54,7 +54,7 @@
     >
       <label>Whoops, can't be empty</label>
       <input
-      (keydown)="onKeydown($event)"
+        (keydown)="onKeydown($event)"
         (focus)="onfocus()"
         (blur)="onblur()"
         [class.darksearch]="isDarkMode"
@@ -69,7 +69,11 @@
       />
     </div>
 
+    <!-- loading -->
+
     <!--  -->
+    @defer () {
+
     <div class="resultWrapper">
       <!-- Result wrapper container above -->
       <ng-container *ngIf="noError">
@@ -112,7 +116,9 @@
             <ul>
               @for(defi of meaning.definitions ; track $index){
               <li>
-                {{ defi.definition }}
+                <p class="definitiontext">
+                  <span class="bullet"><span></span></span>{{ defi.definition }}
+                </p>
               </li>
               @if(defi.example){
               <p class="example subheading">example: {{ defi.example }}</p>
@@ -140,8 +146,8 @@
           <!-- FOOTER -->
           <footer>
             <p class="source">Source</p>
-            <p>https:/en.wiktionary.org/wiki/keyboard</p>
-            <a href="en.wiktionary.org/wiki/keyboard">
+            <p>{{ SourceUrl }}</p>
+            <a [href]="SourceUrl" target="_blank">
               <img src="../assets/icon-new-window.svg" alt="" />
             </a>
           </footer>
@@ -149,12 +155,17 @@
       </ng-container>
       <ng-container *ngIf="yesError">
         <div class="errorContainer">
-          <p class="errorEmoji spaceBig">😕</p>
-          <p class="errorTitle spaceBig">{{ title }}</p>
-          <p class="errorMessage spaceBig">{{ message }}</p>
+          <p class="errorEmoji">😕</p>
+          <p class="errorTitle">{{ title }}</p>
+          <p class="errorMessage">{{ message }}</p>
         </div>
       </ng-container>
     </div>
+    } @placeholder (minimum 2s){
+    <div class="loading">
+      <img src="../assets/spinner.apng" alt="loading" />
+    </div>
+    }
     <!-- result wrapper ends here -->
     <!-- if ends -->
   </div>

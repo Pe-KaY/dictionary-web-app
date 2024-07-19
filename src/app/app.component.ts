@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
           };
           // assigns it to local variables to be used in the html template
           this.word = neededData.word;
+          this.SourceUrl = `https://en.wiktionary.org/wiki/${neededData.word}`;
           this.phonetic = neededData.phonetic;
           this.audio = neededData.audio;
           // disables error screen if enabled
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit {
   word: string = '';
   phonetic: string = '';
   audio: string = '';
+  SourceUrl: string = '';
   // WORD error handling Screen
   title: string = '';
   message: string = '';
